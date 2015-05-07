@@ -12,21 +12,6 @@ module.exports = function(grunt) {
         options: {
           wait: false
         }
-      },
-      localMongodb: {
-        cmd: 'mongod',
-        args: [
-          '--dbpath=./data'
-        ],
-        options: {
-          wait: false
-        }
-      },
-      mongodb: {
-        cmd: 'mongod',
-        options: {
-          wait: false
-        }
       }
     },
     watch: {
@@ -188,10 +173,10 @@ module.exports = function(grunt) {
     ['useminPrepare', 'autoprefixer', 'cssmin']);
 
   grunt.registerTask('serve-local',
-    ['bower:install', 'jshint:source', 'run:localMongodb','run:app', 'watch']);
+    ['bower:install', 'jshint:source', 'run:app', 'watch']);
 
   grunt.registerTask('serve',
-    ['bower:install', 'jshint:source', 'run:mongodb','run:app', 'watch']);
+    ['bower:install', 'jshint:source', 'run:app', 'watch']);
 
   grunt.registerTask('test',
     ['jshint:test', 'karma:unit']);
