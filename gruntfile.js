@@ -4,6 +4,31 @@ module.exports = function(grunt) {
   'use strict';
 
   grunt.initConfig ({
+    ngconstant: {
+      options: {
+        name: 'config',
+        dest: 'src/scripts/config.js'
+      },
+      dist: {
+        constants: {
+          NEWS_SERVER: {
+            uri: 'http://news-server',
+            port: 8005
+          }
+        }
+      },
+      local: {
+        constants: {
+          NEWS_SERVER: {
+            uri: 'http://localhost',
+            port: 8005
+          }
+        }
+      },
+      build: {
+
+      }
+    },
     run: {
       app: {
         args: [
@@ -173,7 +198,7 @@ module.exports = function(grunt) {
     ['useminPrepare', 'autoprefixer', 'cssmin']);
 
   grunt.registerTask('serve-local',
-    ['bower:install', 'jshint:source', 'run:app', 'watch']);
+    ['bower:install', 'jshint:source', 'ngconstant:local', 'run:app', 'watch']);
 
   grunt.registerTask('serve',
     ['bower:install', 'jshint:source', 'run:app', 'watch']);
@@ -182,5 +207,5 @@ module.exports = function(grunt) {
     ['jshint:test', 'karma:unit']);
 
   grunt.registerTask('build',
-    ['jshint:source', 'bower:install', 'clean:dist', 'copy:preDist', 'concurrent:dist', 'copy:dist', 'filerev', 'usemin']);
+    ['jshint:source', 'bower:install', 'ngconstant:dist', 'clean:dist', 'copy:preDist', 'concurrent:dist', 'copy:dist', 'filerev', 'usemin']);
 };

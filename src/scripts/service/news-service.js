@@ -1,9 +1,10 @@
 angular.module('myNews')
-    .factory('NewsService', ['$q', '$resource', function($q, $resource) {
+    .factory('NewsService', ['$q', '$resource', 'NEWS_SERVER', function($q, $resource, NEWS_SERVER) {
         'use strict';
 
-        var newsResource = $resource('data/news');
-        var newsIdResource = $resource('data/news/:id', {id: '@id'});
+        var newsServiceURL = NEWS_SERVER.uri + ':' + NEWS_SERVER.port;
+        var newsResource = $resource(newsServiceURL + '/news');
+        var newsIdResource = $resource(newsServiceURL + '/news/:id', {id: '@id'});
 
         return {
             insert: function(data) {

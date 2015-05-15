@@ -1,4 +1,4 @@
-angular.module('myNews', ['ngResource', 'ui.router'])
+angular.module('myNews', ['ngResource', 'ui.router', 'config'])
     .constant('NEWS_PAGE', {
         pageSize: 2,
         initialPage: 0
