@@ -73,6 +73,9 @@ module.exports = function(grunt) {
       }
     },
     clean: {
+      config: {
+        src: ['src/scripts/config.js']
+      },
       dist: {
         src: ['.tmp', 'dist/{,*/}*']
       }
@@ -191,6 +194,12 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
+  grunt.registerTask('config-local',
+    ['clean:config', 'ngconstant:local']);
+
+  grunt.registerTask('config-dist',
+    ['clean:config', 'ngconstant:dist']);
+
   grunt.registerTask('buildJs',
     ['useminPrepare', 'concat', 'uglify']);
 
@@ -198,14 +207,14 @@ module.exports = function(grunt) {
     ['useminPrepare', 'autoprefixer', 'cssmin']);
 
   grunt.registerTask('serve-local',
-    ['bower:install', 'jshint:source', 'ngconstant:local', 'run:app', 'watch']);
+    ['bower:install', 'jshint:source', 'config-local', 'run:app', 'watch']);
 
   grunt.registerTask('serve',
     ['bower:install', 'jshint:source', 'run:app', 'watch']);
 
   grunt.registerTask('test',
-    ['jshint:test', 'karma:unit']);
+    ['jshint:test', 'config-local', 'karma:unit']);
 
   grunt.registerTask('build',
-    ['jshint:source', 'bower:install', 'ngconstant:dist', 'clean:dist', 'copy:preDist', 'concurrent:dist', 'copy:dist', 'filerev', 'usemin']);
+    ['jshint:source', 'bower:install', 'config-dist', 'clean:dist', 'copy:preDist', 'concurrent:dist', 'copy:dist', 'filerev', 'usemin']);
 };
