@@ -25,6 +25,14 @@ module.exports = function(grunt) {
           }
         }
       },
+      localDocker: {
+        constants: {
+          NEWS_SERVER: {
+            uri: 'http://192.168.59.103',
+            port: 8005
+          }
+        }
+      },
       build: {
 
       }
@@ -197,6 +205,9 @@ module.exports = function(grunt) {
   grunt.registerTask('config-local',
     ['clean:config', 'ngconstant:local']);
 
+  grunt.registerTask('config-local-docker',
+    ['clean:config', 'ngconstant:localDocker']);
+
   grunt.registerTask('config-dist',
     ['clean:config', 'ngconstant:dist']);
 
@@ -207,13 +218,16 @@ module.exports = function(grunt) {
     ['useminPrepare', 'autoprefixer', 'cssmin']);
 
   grunt.registerTask('serve-local',
-    ['bower:install', 'jshint:source', 'config-local', 'run:app', 'watch']);
+    ['bower:install', 'jshint:source', 'config-local-docker', 'run:app', 'watch']);
 
   grunt.registerTask('serve',
     ['bower:install', 'jshint:source', 'run:app', 'watch']);
 
   grunt.registerTask('test',
     ['jshint:test', 'config-local', 'karma:unit']);
+
+  grunt.registerTask('build-local-docker',
+    ['jshint:source', 'bower:install', 'config-local-docker', 'clean:dist', 'copy:preDist', 'concurrent:dist', 'copy:dist', 'filerev', 'usemin']);
 
   grunt.registerTask('build',
     ['jshint:source', 'bower:install', 'config-dist', 'clean:dist', 'copy:preDist', 'concurrent:dist', 'copy:dist', 'filerev', 'usemin']);
