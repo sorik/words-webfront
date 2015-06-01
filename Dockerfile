@@ -1,4 +1,4 @@
-FROM nginx:1.7.1
+FROM nginx:1.9.1
 
-ADD ./dist /usr/local/nginx/html/
-ADD ./nginx.conf /etc/nginx.conf
+ADD ./dist /usr/share/nginx/html/
+ADD ./nginx.conf /etc/nginx/nginx.conf
