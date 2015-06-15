@@ -11,7 +11,7 @@ describe('PageService', function() {
         it('should return current page information', function() {
             var testArray = [1, 2 ,3 ,4 ,5 ,6, 7, 8, 9 ,10];
             expect(pageService.currentPage(testArray, 1, 3)).toEqual({
-                pageNum: 1,
+                pageNum: 0,
                 maxPageNum: 3,
                 pageData: [4, 5 ,6]
             });
