@@ -4,7 +4,7 @@ bower --version
 grunt --version
 
 npm install
-bower --allow-root install
+bower install
 grunt test
 
-./docker-build.sh
+./script/docker-build.sh

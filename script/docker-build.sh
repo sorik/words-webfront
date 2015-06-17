@@ -1,3 +1,3 @@
 #! /bin/sh
 
-docker build -t sorik/words-webfront ../
+docker build -t sorik/words-webfront .
