@@ -8,4 +8,4 @@ bower install
 grunt test
 grunt build
 
-./script/docker-build.sh
+./script/docker-build-push.sh
